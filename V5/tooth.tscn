@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bebaiux2yqrao"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_2ks37"]
+[ext_resource type="PackedScene" uid="uid://d2mff5qdn5mxd" path="res://assets/ToothBrush.glb" id="2_ttfm8"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_aom1y"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_it3bw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vnwak"]
+size = Vector3(0.02, 0.3, 0.02)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PickableObject" parent="." instance=ExtResource("1_2ks37")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableObject"]
+transform = Transform3D(0.993109, 0, 0, 0, 0.993109, 0, 0, 0, 0.993109, 0, 0, 0)
+shape = SubResource("BoxShape3D_vnwak")
+
+[node name="ToothBrush" parent="PickableObject" instance=ExtResource("2_ttfm8")]
+transform = Transform3D(-8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0, 0, 0)
+
+[node name="GrabPointHandRight" parent="PickableObject" instance=ExtResource("3_aom1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0600026, -0.0875196)
+
+[node name="GrabPointHandLeft" parent="PickableObject" instance=ExtResource("4_it3bw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062733, -0.0716601)

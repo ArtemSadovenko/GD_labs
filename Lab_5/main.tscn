@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnbwkt5ni55xs"]
+
+[ext_resource type="PackedScene" uid="uid://b73coh8qonhyq" path="res://level.tscn" id="1_dtol2"]
+[ext_resource type="PackedScene" uid="uid://cmw8a5mvwltkv" path="res://scenes/XRmodel.tscn" id="2_2x0bg"]
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="2_f3ap3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jeutf"]
+
+[sub_resource type="Sky" id="Sky_ulygx"]
+sky_material = SubResource("ProceduralSkyMaterial_jeutf")
+
+[sub_resource type="Environment" id="Environment_o2x72"]
+background_mode = 2
+sky = SubResource("Sky_ulygx")
+ambient_light_source = 2
+ambient_light_color = Color(0.830893, 0.400963, 0.459003, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.874145, -0.250426, 0.416121, 0, 0.856808, 0.515636, -0.485664, -0.450741, 0.748974, 7.09647, 4.8567, 8.53783)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o2x72")
+
+[node name="XRmodel" parent="." instance=ExtResource("2_2x0bg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481013, 0)
+
+[node name="XRSimulator" parent="." instance=ExtResource("2_f3ap3")]
+
+[node name="level" parent="." instance=ExtResource("1_dtol2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45701, 0)

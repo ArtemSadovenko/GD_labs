@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0nck23xjcfcd"]
+
+[ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="1_yrxoi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a2cxj"]
+resource_local_to_scene = true
+radius = 1.0
+
+[node name="SnapZone2" instance=ExtResource("1_yrxoi")]
+grab_distance = 1.0
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00505017, 0)
+shape = SubResource("SphereShape3D_a2cxj")

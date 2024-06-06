@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://w4iklesjit1f"]
+
+[ext_resource type="PackedScene" uid="uid://csqtkv1cmkyv8" path="res://common/32-livingroom_fbx (2)/InteriorTest.fbx" id="1_372dr"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ol7tl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_getrr"]
+size = Vector3(0.4, 4, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r28ux"]
+size = Vector3(6, 4, 0.2)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.558626)
+
+[node name="Root Scene" parent="." instance=ExtResource("1_372dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200762, 0, -1.41387)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.180546)
+shape = SubResource("WorldBoundaryShape3D_ol7tl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73153, 1.77342, -1.37248)
+shape = SubResource("BoxShape3D_getrr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24108, 1.77342, -3.8198)
+shape = SubResource("BoxShape3D_getrr")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53757, 2.40573)
+shape = SubResource("BoxShape3D_r28ux")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53757, -5.34135)
+shape = SubResource("BoxShape3D_r28ux")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.493486, 0.869753, 0, -0.869753, 0.493486, 0, 5.99293, 0)

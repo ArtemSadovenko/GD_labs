@@ -1,0 +1,94 @@
+[gd_scene load_steps=19 format=3 uid="uid://xllikftgso16"]
+
+[ext_resource type="PackedScene" uid="uid://s37k8fhqe623" path="res://scene/XRmodel.tscn" id="1_ksk73"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_qt5b2"]
+[ext_resource type="PackedScene" uid="uid://dxselgeblpxfb" path="res://scene/control.tscn" id="3_yp00l"]
+[ext_resource type="PackedScene" uid="uid://dhhruyptkmyep" path="res://scene/hand.tscn" id="4_a53sg"]
+[ext_resource type="PackedScene" uid="uid://ckn8nbj3skhwi" path="res://scene/heel.tscn" id="5_qg74l"]
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="6_2rn37"]
+[ext_resource type="PackedScene" uid="uid://uqce5a21fm5r" path="res://addons/godot-xr-tools/objects/pickable_object_paw.tscn" id="7_en08x"]
+[ext_resource type="PackedScene" uid="uid://dmyqvrq5oftdj" path="res://addons/godot-xr-tools/objects/pickable_object_bottle.tscn" id="8_losip"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0urec"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfbuj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fexdq"]
+material = SubResource("StandardMaterial3D_cfbuj")
+size = Vector2(18, 18)
+
+[sub_resource type="TextMesh" id="TextMesh_s3ajc"]
+text = "1. Обробіть подряпину йодом.
+2. Наклейте антибактеріальний пластир"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_koomh"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6iqb"]
+albedo_color = Color(0.713726, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4o7bx"]
+material = SubResource("StandardMaterial3D_u6iqb")
+size = Vector3(2, 1, 2)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_nlfcb"]
+ground_color = Color(0.855157, 0.751029, 0.630064, 1)
+
+[sub_resource type="Sky" id="Sky_ao227"]
+sky_material = SubResource("PhysicalSkyMaterial_nlfcb")
+
+[sub_resource type="Environment" id="Environment_safx8"]
+background_mode = 2
+sky = SubResource("Sky_ao227")
+
+[node name="Main_scene" type="Node3D"]
+
+[node name="XRmodel" parent="." instance=ExtResource("1_ksk73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.331723, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_0urec")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_fexdq")
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("2_qt5b2")]
+transform = Transform3D(0.760576, 0, -0.649249, 0, 1, 0, 0.649249, 0, 0.760576, 3.1775, 1.33988, -1.76987)
+scene = ExtResource("3_yp00l")
+viewport_size = Vector2(500, 500)
+
+[node name="hand" parent="." instance=ExtResource("4_a53sg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.108925, 0.889552, -2.79783)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.783748, 0.621079, 0, -0.621079, 0.783748, 0, 6.1154, 0)
+
+[node name="heel" parent="." instance=ExtResource("5_qg74l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72674, 0.584415, -1.40506)
+
+[node name="XRSimulator" parent="." instance=ExtResource("6_2rn37")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51499, -5.68654)
+mesh = SubResource("TextMesh_s3ajc")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.771269, 0, 0.636509, 0, 1, 0, -0.636509, 0, 0.771269, -2.03154, 0.0282803, -2.03399)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_koomh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_4o7bx")
+
+[node name="PickableObject" parent="." instance=ExtResource("7_en08x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35079, 0.727301, -1.64803)
+
+[node name="PickableObject2" parent="." instance=ExtResource("8_losip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24205, 0.679491, -1.97939)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_safx8")

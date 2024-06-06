@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhhruyptkmyep"]
+
+[ext_resource type="PackedScene" uid="uid://bkd86sx75ywwf" path="res://common/hand.glb" id="2_7m5ph"]
+[ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="2_064qb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3wnh5"]
+height = 5.0
+radius = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3sch"]
+size = Vector3(1, 1, 0.958862)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0244542, -0.176188, 0.0914313, -0.00982403, 0.0909353, 0.17786, -0.198256, -0.0262382, 0.00246434, 0.424907, -0.267761, 0)
+
+[node name="hand" parent="StaticBody3D" instance=ExtResource("2_7m5ph")]
+transform = Transform3D(1, 7.45058e-08, 4.65661e-09, 0, 1, 6.51926e-09, -2.98023e-08, 1.71131e-08, 1, 0.139776, -0.369299, 1.41492)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.943313, -0.32497, -0.0674534, 0.318183, 0.827645, 0.462339, -0.0944189, -0.457594, 0.884133, -0.79315, 3.604, 0.172401)
+shape = SubResource("CylinderShape3D_3wnh5")
+
+[node name="SnapZone" parent="." instance=ExtResource("2_064qb")]
+transform = Transform3D(0.0273154, -0.113111, 0.993207, -0.105377, 0.987716, 0.115384, -0.994057, -0.107813, 0.0150605, -0.0733945, -0.232197, 0.0238984)
+collision_layer = 1
+collision_mask = 65537
+snap_mode = 1
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SnapZone"]
+transform = Transform3D(0.996233, -0.0846765, 0.0187389, 0.0864102, 0.987564, -0.131344, -0.00738403, 0.132469, 0.991159, -0.0316323, -0.00717713, -0.0132626)
+shape = SubResource("BoxShape3D_w3sch")

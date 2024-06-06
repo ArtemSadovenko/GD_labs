@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://d23prx4i3x6pd"]
+
+[ext_resource type="PackedScene" uid="uid://cmw8a5mvwltkv" path="res://scene/XRmodel.tscn" id="1_bvalk"]
+[ext_resource type="PackedScene" uid="uid://bebaiux2yqrao" path="res://tooth.tscn" id="2_sk4qp"]
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="3_rdvv8"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="4_l7ufu"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ph1fd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hgu5i"]
+size = Vector2(20, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyl0e"]
+
+[sub_resource type="Environment" id="Environment_eyl02"]
+background_mode = 1
+background_color = Color(0, 0, 0, 0)
+
+[node name="Maun" type="Node3D"]
+
+[node name="XRmodel" parent="." instance=ExtResource("1_bvalk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393301, 0)
+
+[node name="Node3D" parent="." instance=ExtResource("2_sk4qp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12685, -1.06383)
+visible = false
+
+[node name="XRSimulator" parent="." instance=ExtResource("3_rdvv8")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ph1fd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_hgu5i")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, 0.444613, -1.06971)
+shape = SubResource("BoxShape3D_yyl0e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eyl02")
+
+[node name="StartXR" parent="." instance=ExtResource("4_l7ufu")]
+enable_passthrough = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.777892, 0.254802, -0.574422, -0.0367794, 0.894076, 0.446402, 0.627321, 0.36838, -0.686123, -4.62176, 4.17567, -6.78552)
